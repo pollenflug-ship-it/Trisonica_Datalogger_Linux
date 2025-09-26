@@ -86,24 +86,6 @@ python test_datalogger.py
 - `WindRose_filename.png` - Wind pattern visualization
 - `Summary_filename.png` - Multi-parameter overview
 
-## Supported Parameters
-
-| Code | Description | Unit |
-|------|-------------|------|
-| S    | Total wind speed | m/s |
-| S2   | Alt wind speed calc | m/s |
-| D    | Wind direction | 0-360° |
-| U    | East-west component | m/s |
-| V    | North-south component | m/s |
-| W    | Vertical component | m/s |
-| T    | Temperature | °C |
-| H    | Humidity | % |
-| P    | Pressure | hPa |
-| PI   | Pitch angle | ° |
-| RO   | Roll angle | ° |
-| MD   | Magnetic heading | ° |
-| TD   | True heading | ° |
-
 ## Log Format Support
 
 - **CSV format** - Modern structured logs
