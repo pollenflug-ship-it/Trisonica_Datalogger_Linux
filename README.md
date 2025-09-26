@@ -12,7 +12,6 @@ Data logging and visualization tool for Trisonica ultrasonic anemometer, for Lin
 - **Error handling** and data quality monitoring
 - **Portable filepaths** - works anywhere
 
-![Terminal View while logging](Terminal_View.png)
 ## File Structure
 
 ```
