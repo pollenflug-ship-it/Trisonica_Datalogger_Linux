@@ -1,6 +1,6 @@
 # Trisonica Data Logger
 
-A comprehensive data logging and visualization tool for Trisonica weather stations, optimized for Linux systems.
+Data logging and visualization tool for Trisonica ultrasonic anemometer, for Linux systems.
 
 ## Features
 
@@ -111,8 +111,7 @@ python test_datalogger.py
 
 - Filters out error values (-99.50, -99.70)
 - Tracks sensor health and data quality
-- Handles connection drops gracefully
-- Validates parameter ranges
+- Errors are noted in the Stats file generated after each measurement
 
 ## Platform Support
 
