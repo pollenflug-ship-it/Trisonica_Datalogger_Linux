@@ -2,6 +2,8 @@
 
 Data logging and visualization tool for Trisonica ultrasonic anemometer, for Linux systems.
 
+![Terminal View while logging](Terminal_View.png)
+
 ## Features
 
 - **Real-time data logging** with Rich-based terminal interface
@@ -12,7 +14,6 @@ Data logging and visualization tool for Trisonica ultrasonic anemometer, for Lin
 - **Error handling** and data quality monitoring
 - **Portable filepaths** - works anywhere
 
-![Terminal View while logging](Terminal_View.png)
 ## File Structure
 
 ```
