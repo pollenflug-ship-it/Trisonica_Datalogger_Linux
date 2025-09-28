@@ -90,7 +90,6 @@ python test_datalogger.py
 
 - **CSV format** - Modern structured logs
 - **Tagged format** - Legacy `[timestamp], param value, param value` format
-- **JSON format** - macOS parsed_json column format
 
 ## Error Handling
 
