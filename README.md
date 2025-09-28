@@ -97,6 +97,7 @@ python test_datalogger.py
 - Filters out error values (-99.50, -99.70)
 - Tracks sensor health and data quality
 - Errors are noted in the Stats file generated after each measurement
+- Most errors occured due to loose wires so fixing them securely is important
 
 ## Platform Support
 
