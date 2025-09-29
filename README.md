@@ -2,7 +2,7 @@
 
 Data logging and visualization tool for Trisonica Li-550P Mini ultrasonic anemometer on Linux systems.
 
-**Manual**: [LI-COR Li-550P Documentation](https://www.licor.com/support/LI-550/manuals.html)
+**Anemometer Manual**: [LI-COR Li-550P Documentation](https://www.licor.com/support/LI-550/manuals.html)
 
 https://youtu.be/PLzlLJtpavw?si=Lwl2AeF47sLfWvLV
 
