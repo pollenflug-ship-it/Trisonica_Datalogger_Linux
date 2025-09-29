@@ -20,6 +20,15 @@ Tested with the Li-550P anemometer by LI-COR in combination with the USB-C adapt
 pip install serial pyserial rich pandas matplotlib windrose
 ```
 
+## Configure the Trisonica
+```bash
+screen /dev/ttyUSB0 115200
+```
+Make sure to use the actual port name the trisonica is connected to.
+Gives you the raw datastream once the anemometer connected and running. 
+Pressing ESC will quit the datastream and opens the trisonica configuration settings.
+
+
 ## Usage
 
 ### Data Logging
