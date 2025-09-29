@@ -25,7 +25,11 @@ pip install serial pyserial rich pandas matplotlib windrose
 screen /dev/ttyUSB0 115200
 ```
 Make sure to use the actual port name the trisonica is connected to.
+
+![Data Stream](Datastream.png)
 Gives you the raw datastream once the anemometer connected and running. 
+
+![Trisonica Menu](Trisonica_Menu)
 Pressing ESC will quit the datastream and opens the trisonica configuration settings.
 
 
