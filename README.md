@@ -3,6 +3,8 @@
 Advanced data logging and visualization tool for Trisonica ultrasonic anemometer on Linux systems.
 Tested with the Li-550P anemometer by LI-COR in combination with the USB-C adapter module.
 
+![Terminal View](Terminal_View.png)
+
 ## Features
 
 - **Real-time data logging** with Rich-based terminal interface
