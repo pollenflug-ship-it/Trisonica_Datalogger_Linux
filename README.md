@@ -1,7 +1,8 @@
-# Trisonica Data Logger - Linux Version
+# Trisonica Li-550P Mini Data Logger - Linux Version
 
-Data logging and visualization tool for Trisonica ultrasonic anemometer on Linux systems.
-Tested with the Li-550P anemometer by LI-COR in combination with the USB-C adapter module.
+Data logging and visualization tool for Trisonica Li-550P Mini ultrasonic anemometer on Linux systems.
+
+**Manual**: [LI-COR Li-550P Documentation](https://www.licor.com/support/LI-550/manuals.html)
 
 https://youtu.be/PLzlLJtpavw?si=Lwl2AeF47sLfWvLV
 
@@ -10,7 +11,7 @@ https://youtu.be/PLzlLJtpavw?si=Lwl2AeF47sLfWvLV
 ## Features
 
 - **Real-time data logging** with Rich-based terminal interface
-- **Auto-detection** of Trisonica devices on serial ports
+- **Auto-detection** of Trisonica Li-550P Mini devices on serial ports
 - **CSV data export** with dynamic column management
 - **Statistics tracking** with min/max/mean/std calculations
 - **Data visualization** with time-series plots and wind roses
@@ -40,7 +41,7 @@ Pressing ESC will quit the datastream and opens the trisonica configuration sett
 ### Data Logging
 
 ```bash
-# Auto-detect Trisonica and start logging
+# Auto-detect Trisonica Li-550P Mini and start logging
 python datalogger.py
 
 # Specify serial port
@@ -89,11 +90,21 @@ python test_datalogger.py
 - `WindRose_filename.png` - Wind pattern visualization
 - `Summary_filename.png` - Multi-parameter overview
 
+### Data Parameters
+| Code | Description | Unit | Range |
+|------|-------------|------|-------|
+| S    | Wind speed  | m/s  | 0-50  |
+| S2   | Alt wind speed | m/s | 0-50  |
+| D    | Wind direction | deg | 0-360 |
+| T    | Temperature | °C | -40 to +60 |
+| H    | Humidity | % | 0-100 |
+| P    | Pressure | hPa | 900-1100 |
+
 ## Error Handling and Data Quality
 
 - **Error detection** for sensor malfunctions and invalid readings
 - **Temperature validation** (negative values flagged as errors)
-- **Filters out error values** (-99.50, -99.70, and other sensor error codes)
+- **Filters out error values** (-99.x values and other sensor error codes)
 - **Tracks sensor health** and data quality metrics
 - **Error statistics** in real-time console and Stats CSV files
 - **Common error sources**:
