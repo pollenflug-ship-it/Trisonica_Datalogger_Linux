@@ -82,7 +82,7 @@ python test_datalogger.py
 - **Tracks sensor health** and data quality metrics
 - **Error statistics** in real-time console and Stats CSV files
 - **Common error sources**:
-  - Poor anemometer placement (primary cause - needs 3-5m clearance)
+  - Poor anemometer placement (primary cause - anemometer head needs clearance)
   - Loose wire connections (secure all connections)
   - Ultrasonic path interference from nearby obstacles
 - **Data quality target**: Error rate should be < 5% for reliable measurements
