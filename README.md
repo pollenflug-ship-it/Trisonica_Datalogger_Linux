@@ -29,7 +29,7 @@ Make sure to use the actual port name the trisonica is connected to.
 ![Data Stream](Datastream.png)
 Gives you the raw datastream once the anemometer connected and running. 
 
-![Trisonica Menu](Trisonica_Menu)
+![Trisonica Menu](Trisonica_Menu.png)
 Pressing ESC will quit the datastream and opens the trisonica configuration settings.
 
 
