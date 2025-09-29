@@ -32,6 +32,15 @@ datalogger/
 pip install serial pyserial rich pandas matplotlib windrose
 ```
 
+## Anemometer Placement (Critical for Data Quality)
+
+**IMPORTANT**: Proper placement is essential for accurate readings
+- **Minimum clearance**: 3-5 meters from obstacles in all directions
+- **Avoid**: Buildings, trees, walls, vehicles, or other obstructions
+- **Ultrasonic sensors** are highly sensitive to reflections and turbulence
+- **Poor placement** is the primary cause of corrupted/error readings
+- **Ideal setup**: Open field with unobstructed airflow
+
 ## Usage
 
 ### Data Logging
@@ -91,12 +100,18 @@ python test_datalogger.py
 - **CSV format** - Modern structured logs
 - **Tagged format** - Legacy `[timestamp], param value, param value` format
 
-## Error Handling
+## Error Handling and Data Quality
 
-- Filters out error values (-99.50, -99.70)
-- Tracks sensor health and data quality
-- Errors are noted in the Stats file generated after each measurement
-- Most errors occured due to loose wires so fixing them securely is important
+- **Error detection** for sensor malfunctions and invalid readings
+- **Temperature validation** (negative values flagged as errors)
+- **Filters out error values** (-99.50, -99.70, and other sensor error codes)
+- **Tracks sensor health** and data quality metrics
+- **Error statistics** in real-time console and Stats CSV files
+- **Common error sources**:
+  - Poor anemometer placement (primary cause - needs 3-5m clearance)
+  - Loose wire connections (secure all connections)
+  - Ultrasonic path interference from nearby obstacles
+- **Data quality target**: Error rate should be < 5% for reliable measurements
 
 ## Platform Support
 
