@@ -36,7 +36,7 @@ def test_datalogger_initialization():
         assert logger.csv_columns == ['timestamp']
         assert len(logger.viz_data) == 4  # wind_speed, temperature, wind_direction, timestamps
 
-        print("✅ Initialization test passed")
+        print("[PASS] Initialization test passed")
 
 def test_data_parsing():
     """Test the data parsing functionality"""
@@ -60,7 +60,7 @@ def test_data_parsing():
         assert parsed['D'] == '180'
         assert parsed['T'] == '23.5'
 
-        print("✅ Data parsing test passed")
+        print("[PASS] Data parsing test passed")
 
 def test_csv_column_management():
     """Test dynamic CSV column management"""
@@ -82,7 +82,7 @@ def test_csv_column_management():
         expected_columns2 = ['timestamp', 'S', 'D', 'T', 'H', 'P']
         assert logger.csv_columns == expected_columns2
 
-        print("✅ CSV column management test passed")
+        print("[PASS] CSV column management test passed")
 
 def test_statistics_calculation():
     """Test statistics calculation"""
@@ -104,7 +104,7 @@ def test_statistics_calculation():
         assert abs(stats.mean_val - 11.2) < 0.01  # Mean should be 11.2
         assert stats.std_dev > 0  # Should have some standard deviation
 
-        print("✅ Statistics calculation test passed")
+        print("[PASS] Statistics calculation test passed")
 
 def test_layout_creation():
     """Test that the layout can be created"""
@@ -124,11 +124,11 @@ def test_layout_creation():
         # This is a basic check - Rich layouts are complex objects
         assert layout is not None
 
-        print("✅ Layout creation test passed")
+        print("[PASS] Layout creation test passed")
 
 def main():
     """Run all tests"""
-    print("🧪 Running Linux Trisonica datalogger tests...\n")
+    print("Running Linux Trisonica datalogger tests...\n")
 
     try:
         test_datalogger_initialization()
@@ -137,16 +137,16 @@ def main():
         test_statistics_calculation()
         test_layout_creation()
 
-        print(f"\n🎉 All tests passed! Linux datalogger is ready to use.")
-        print(f"📋 Updated features:")
-        print(f"   ✅ Enhanced wind visualization with direction")
-        print(f"   ✅ Parameter descriptions panel")
-        print(f"   ✅ Improved layout matching Mac version")
-        print(f"   ✅ Raw data display enabled by default")
-        print(f"   ✅ Better sparkline visualization")
+        print(f"\nAll tests passed! Linux datalogger is ready to use.")
+        print(f"Updated features:")
+        print(f"   [OK] Enhanced wind visualization with direction")
+        print(f"   [OK] Parameter descriptions panel")
+        print(f"   [OK] Improved layout matching Mac version")
+        print(f"   [OK] Raw data display enabled by default")
+        print(f"   [OK] Better sparkline visualization")
 
     except Exception as e:
-        print(f"\n❌ Test failed: {e}")
+        print(f"\n[FAIL] Test failed: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

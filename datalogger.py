@@ -99,7 +99,8 @@ class TrisonicaDataLoggerLinux:
             'last_error_time': None,
             'sensor_health': {},
             'connection_drops': 0,
-            'last_connection_time': time.time()
+            'last_connection_time': time.time(),
+            'parameter_errors': {}  # Track errors per parameter
         }
 
         # Recent wind measurements for trend analysis
@@ -216,7 +217,7 @@ class TrisonicaDataLoggerLinux:
             self.stats_filename = f"TrisonicaStats_{timestamp}.csv"
             self.stats_path = os.path.join(self.config.log_dir, self.stats_filename)
             self.stats_file = open(self.stats_path, 'w', newline='')
-            self.stats_file.write("timestamp,parameter,min,max,mean,std_dev,count\n")
+            self.stats_file.write("timestamp,parameter,min,max,mean,std_dev,count,error_count,error_rate_percent,total_readings\n")
             
         self.console.print(f"[LOG] Data Log: {self.log_filename}")
         if self.config.save_statistics:
@@ -347,11 +348,28 @@ class TrisonicaDataLoggerLinux:
                 try:
                     value = float(value_str)
 
+                    # Initialize parameter error tracking if needed
+                    if key not in self.data_quality['parameter_errors']:
+                        self.data_quality['parameter_errors'][key] = {
+                            'error_count': 0,
+                            'total_count': 0
+                        }
+
+                    # Track total readings for this parameter
+                    self.data_quality['parameter_errors'][key]['total_count'] += 1
+
                     # Check for error values and update sensor health
-                    is_error = value == -99.50
+                    # Trisonica uses various -99.x values to indicate sensor errors
+                    is_error = value <= -99.0
+                    if key == 'T' and value < 0:  # Temperature should not be negative
+                        is_error = True
+
                     self.update_sensor_health(key, value, is_error)
 
-                    if not is_error:
+                    if is_error:
+                        # Track errors per parameter
+                        self.data_quality['parameter_errors'][key]['error_count'] += 1
+                    else:
                         self.calculate_statistics(key, value)
 
                         # Update visualization data
@@ -384,14 +402,45 @@ class TrisonicaDataLoggerLinux:
             return None
             
     def save_final_statistics(self):
-        """Save final statistics summary"""
+        """Save final statistics summary with error analysis"""
         if not self.config.save_statistics or not self.stats_file:
             return
-            
+
         timestamp = datetime.datetime.now().isoformat()
-        for key, stat in self.stats.items():
-            self.stats_file.write(f"{timestamp},{key},{stat.min_val:.6f},{stat.max_val:.6f},"
-                                f"{stat.mean_val:.6f},{stat.std_dev:.6f},{stat.count}\n")
+
+        # Get all parameters that had any data (stats or errors)
+        all_parameters = set(self.stats.keys()) | set(self.data_quality['parameter_errors'].keys())
+
+        for key in all_parameters:
+            # Get statistics (if available)
+            if key in self.stats:
+                stat = self.stats[key]
+                min_val = stat.min_val
+                max_val = stat.max_val
+                mean_val = stat.mean_val
+                std_dev = stat.std_dev
+                good_count = stat.count
+            else:
+                # No valid data for this parameter
+                min_val = max_val = mean_val = std_dev = 0.0
+                good_count = 0
+
+            # Get error data (if available)
+            if key in self.data_quality['parameter_errors']:
+                error_data = self.data_quality['parameter_errors'][key]
+                error_count = error_data['error_count']
+                total_readings = error_data['total_count']
+                error_rate = (error_count / total_readings * 100) if total_readings > 0 else 0.0
+            else:
+                error_count = 0
+                total_readings = good_count
+                error_rate = 0.0
+
+            # Write comprehensive stats line
+            self.stats_file.write(f"{timestamp},{key},{min_val:.6f},{max_val:.6f},"
+                                f"{mean_val:.6f},{std_dev:.6f},{good_count},"
+                                f"{error_count},{error_rate:.2f},{total_readings}\n")
+
         self.stats_file.flush()
     
     def create_sparkline(self, data: deque, title: str, direction_data: deque = None) -> Panel:

@@ -1,9 +1,7 @@
-# Trisonica Data Logger
+# Trisonica Data Logger - Linux Version
 
-Data logging and visualization tool for Trisonica ultrasonic anemometer, for Linux systems.
-Tested with the Li - 550P anemometer by LI-COR in combination with the USB-C adapter module.
-
-![Terminal View while logging](Terminal_View.png)
+Advanced data logging and visualization tool for Trisonica ultrasonic anemometer on Linux systems.
+Tested with the Li-550P anemometer by LI-COR in combination with the USB-C adapter module.
 
 ## Features
 
@@ -15,31 +13,11 @@ Tested with the Li - 550P anemometer by LI-COR in combination with the USB-C ada
 - **Error handling** and data quality monitoring
 - **Portable filepaths** - works anywhere
 
-## File Structure
-
-```
-datalogger/
-├── datalogger.py          # Main logging application
-├── DataVis.py             # Post-processing visualization tool
-├── test_datalogger.py     # Test suite
-├── OUTPUT/                # Created automatically - data logs go here
-└── PLOTS/                 # Created automatically - visualization plots go here
-```
-
 ## Requirements
 
 ```bash
 pip install serial pyserial rich pandas matplotlib windrose
 ```
-
-## Anemometer Placement (Critical for Data Quality)
-
-**IMPORTANT**: Proper placement is essential for accurate readings
-- **Minimum clearance**: 3-5 meters from obstacles in all directions
-- **Avoid**: Buildings, trees, walls, vehicles, or other obstructions
-- **Ultrasonic sensors** are highly sensitive to reflections and turbulence
-- **Poor placement** is the primary cause of corrupted/error readings
-- **Ideal setup**: Open field with unobstructed airflow
 
 ## Usage
 
@@ -95,11 +73,6 @@ python test_datalogger.py
 - `WindRose_filename.png` - Wind pattern visualization
 - `Summary_filename.png` - Multi-parameter overview
 
-## Log Format Support
-
-- **CSV format** - Modern structured logs
-- **Tagged format** - Legacy `[timestamp], param value, param value` format
-
 ## Error Handling and Data Quality
 
 - **Error detection** for sensor malfunctions and invalid readings
@@ -112,6 +85,15 @@ python test_datalogger.py
   - Loose wire connections (secure all connections)
   - Ultrasonic path interference from nearby obstacles
 - **Data quality target**: Error rate should be < 5% for reliable measurements
+
+## Anemometer Placement (Critical for Data Quality)
+
+**IMPORTANT**: Proper placement is essential for accurate readings
+- **Minimum clearance**: 3-5 meters from obstacles in all directions
+- **Avoid**: Buildings, trees, walls, vehicles, or other obstructions
+- **Ultrasonic sensors** are highly sensitive to reflections and turbulence
+- **Poor placement** is the primary cause of corrupted/error readings
+- **Ideal setup**: Open field with unobstructed airflow
 
 ## Platform Support
 
